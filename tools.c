@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:34:18 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 01:35:52 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 02:49:40 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ char	file_type(mode_t st_mode)
 	return ('?');
 }
 
-char	permcheck_l(char *filepath)
+int     permcheck_read(char *filepath)
 {
 	struct stat	buf;
 
 	lstat(filepath, &buf);
 	return (((buf.st_mode & S_IRUSR) && (buf.st_mode & S_IRGRP)
-				&& (buf.st_mode & S_IROTH)) ? 'r' : '-');
+				&& (buf.st_mode & S_IROTH)) ? 1 : 0);
 }

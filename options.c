@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 02:14:00 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 02:50:18 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,51 @@ int    test_options_b(char **argv)
     return(0);
 }
 
+int    test_options_c(char **argv)
+{
+    struct stat buf;
+    if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != 'c')
+        return(1);
+    return(0);
+}
+
+int    test_options_d(char **argv)
+{
+    struct stat buf;
+    if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != 'd')
+        return(1);
+    return(0);
+}
+
+int    test_options_e(char **argv)
+{
+    struct stat buf;
+    if (lstat(argv[2],&buf) == -1)
+        return(1);
+    return(0);
+}
+
+int    test_options_f(char **argv)
+{
+    struct stat buf;
+    if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != '-g')
+        return(1);
+    return(0);
+}
+
+
+
 int test_options(char **argv)
 {
     int i;
     
     t_option table[] = {
-        {"-b",&test_options_b}};
+        {"-b",&test_options_b},
+        {"-c",&test_options_c},
+        {"-d",&test_options_d},
+        {"-e",&test_options_e},
+        {"-f",&test_options_f}
+        };
 
     i = 0;
     while(i < sizeof(table)/sizeof(*table))
