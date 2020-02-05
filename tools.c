@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:34:18 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 02:49:40 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 02:59:47 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,10 @@ int     permcheck_read(char *filepath)
 	return (((buf.st_mode & S_IRUSR) && (buf.st_mode & S_IRGRP)
 				&& (buf.st_mode & S_IROTH)) ? 1 : 0);
 }
+
+
+int     check_STGID(mode_t st_mode)
+{
+    return((st_mode & S_ISGID) ? 1 : 0);
+}
+
