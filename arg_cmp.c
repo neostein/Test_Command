@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 04:58:33 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 06:05:57 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 06:34:59 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,30 @@ int     test_int_eq(char **argv)
 {
     int first;
     int second;
+    int i;
+    int j;
+    
 /* we should do parsing against the erros 
 ex :    test 13e -eq 13
         test hello -eq hello
         test world -eq 42
 */
+    i = 0;
+    j = 1;
+    while(argv[j][i])
+    {
+        if (!ft_isdigit(argv[j][i]))
+        {
+            ft_putendl_fd("integer expression expected",2);
+            return(2);
+        }
+        i++;
+        if (j != 3 && !argv[j][i])
+        {
+            j = 3;
+            i = 0;            
+        }
+    }
     first = ft_atoi(argv[1]);
     second = ft_atoi(argv[3]);
     return(!(first == second));
