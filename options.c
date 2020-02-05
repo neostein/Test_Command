@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 04:49:33 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 06:10:04 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,12 @@ int    test_options_z(char **argv)
     int len;
 
     len = ft_strlen(argv[2]);
-    return(len == 0 ? 0 : 1);
+    return(!(len == 0));
+}
+
+int     test_options_exclamation(char **argv) // need improvement
+{
+    return(test_options_z(argv));
 }
 
 int test_options(char **argv)
@@ -160,7 +165,8 @@ int test_options(char **argv)
         {"-u",&test_options_u},
         {"-w",&test_options_w},
         {"-x",&test_options_x},
-        {"-z",&test_options_z}
+        {"-z",&test_options_z},
+        {"!",&test_options_exclamation}
         };
 
     i = 0;
@@ -170,7 +176,7 @@ int test_options(char **argv)
             return(table[i].f(argv));
             i++;
     }
-    printf("option not found");
+    printf("%s unary option not found\n",argv[1]);
     return(2);
 }
 
