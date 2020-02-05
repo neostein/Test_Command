@@ -14,7 +14,5 @@ typedef struct  s_option
 
 char	file_type(mode_t st_mode);
 int     test_options(char **argv);
-int     check_STGID(mode_t st_mode);
-int     check_read(mode_t st_mode);
 
 #endif

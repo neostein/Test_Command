@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:34:18 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 04:19:42 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 04:24:07 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int     check_read(mode_t st_mode)
 {
 	return (((st_mode & S_IRUSR) && (st_mode & S_IRGRP)
 				&& (st_mode & S_IROTH)) ? 1 : 0);
+}
+
+int     check_write(mode_t st_mode)
+{
+	return (((st_mode & S_IWUSR) && (st_mode & S_IWGRP)
+				&& (st_mode & S_IWOTH)) ? 1 : 0);
 }
 
 
