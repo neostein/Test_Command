@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 01:59:34 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 02:14:00 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int    test_options_b(char **argv)
 {
-    return(10);
+    struct stat buf;
+    if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != 'b')
+        return(1);
+    return(0);
 }
 
 int test_options(char **argv)
