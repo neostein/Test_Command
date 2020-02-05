@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 03:47:35 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 04:11:13 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int    test_options_f(char **argv)
 int    test_options_g(char **argv)
 {
     struct stat buf;
+
     if (lstat(argv[2],&buf) == -1 || !check_STGID(buf.st_mode))
         return(1);
     return(0);
@@ -63,6 +64,7 @@ int    test_options_g(char **argv)
 int    test_options_l(char **argv)
 {
     struct stat buf;
+
     if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != 'l')
         return(1);
     return(0);
@@ -71,7 +73,35 @@ int    test_options_l(char **argv)
 int    test_options_p(char **argv)
 {
     struct stat buf;
+
     if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != 'p')
+        return(1);
+    return(0);
+}
+
+int    test_options_r(char **argv)
+{
+    struct stat buf;
+
+    if (lstat(argv[2],&buf) == -1 || !check_read(buf.st_mode))
+        return(1);
+    return(0);
+}
+
+int    test_options_capital_s(char **argv)
+{
+    struct stat buf;
+
+    if (lstat(argv[2],&buf) == -1 || file_type(buf.st_mode) != 's')
+        return(1);
+    return(0);
+}
+
+int    test_options_s(char **argv)
+{
+    struct stat buf;
+
+    if (lstat(argv[2],&buf) == -1 || buf.st_size <= 0)
         return(1);
     return(0);
 }
@@ -88,7 +118,10 @@ int test_options(char **argv)
         {"-f",&test_options_f},
         {"-g",&test_options_g},
         {"-L",&test_options_l},
-        {"-L",&test_options_l}
+        {"-p",&test_options_p},
+        {"-r",&test_options_r},
+        {"-S",&test_options_capital_s},
+        {"-s",&test_options_s}
         };
 
     i = 0;
