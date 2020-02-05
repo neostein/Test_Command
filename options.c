@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 04:11:13 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 04:19:57 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int    test_options_g(char **argv)
 {
     struct stat buf;
 
-    if (lstat(argv[2],&buf) == -1 || !check_STGID(buf.st_mode))
+    if (lstat(argv[2],&buf) == -1 || !(buf.st_mode & S_ISGID) ? 1 : 0)
         return(1);
     return(0);
 }
@@ -106,6 +106,15 @@ int    test_options_s(char **argv)
     return(0);
 }
 
+int    test_options_u(char **argv)
+{
+    struct stat buf;
+
+    if (lstat(argv[2],&buf) == -1 || !(buf.st_mode & S_ISUID) ? 1 : 0)
+        return(1);
+    return(0);
+}
+
 int test_options(char **argv)
 {
     int i;
@@ -121,7 +130,8 @@ int test_options(char **argv)
         {"-p",&test_options_p},
         {"-r",&test_options_r},
         {"-S",&test_options_capital_s},
-        {"-s",&test_options_s}
+        {"-s",&test_options_s},
+        {"-u",&test_options_u}
         };
 
     i = 0;
