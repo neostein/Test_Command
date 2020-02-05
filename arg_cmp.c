@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_cmp.c                                          :+:      :+:    :+:   */
+/*   arg_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 04:58:33 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 05:12:39 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 05:33:58 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,26 @@ int     test_string_neq(char **argv)
     return(ft_strequ(argv[1], argv[3]));   
 }
 
+int     test_int_eq(char **argv)
+{
+    int first;
+    int second;
+
+    first = ft_atoi(argv[1]);
+    second = ft_atoi(argv[3]);
+    
+    return(!(first == second));
+}
+
+
 int     test_cmp(char **argv)
 {
     int i;
     
     t_cmp operator[] = {
         {"=",&test_string_eq},
-        {"!=",&test_string_neq}
+        {"!=",&test_string_neq},
+        {"-eq",&test_int_eq}
     };
     i = 0;
     while(i < sizeof(operator)/sizeof(*operator))
