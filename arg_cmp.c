@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 04:58:33 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 05:33:58 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 05:51:17 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int     test_string_eq(char **argv)
 {
+        /* we should do parsing against the erros 
+ex :    test =hello
+        test world =
+
+*/
     return(!ft_strequ(argv[1], argv[3]));   
 }
 
@@ -26,22 +31,69 @@ int     test_int_eq(char **argv)
 {
     int first;
     int second;
-
+/* we should do parsing against the erros 
+ex :    test 13e -eq 13
+        test hello -eq hello
+        test world -eq 42
+*/
     first = ft_atoi(argv[1]);
     second = ft_atoi(argv[3]);
-    
     return(!(first == second));
 }
 
+int     test_int_ne(char **argv)
+{
+    return (!test_int_eq(argv));
+}
+
+int     test_int_ge(char **argv)
+{
+    int first;
+    int second;
+/*
+        parsing and input errors must be considered
+*/
+    first = ft_atoi(argv[1]);
+    second = ft_atoi(argv[3]);
+    return (!(first >= second));
+}
+
+int     test_int_lt(char **argv)
+{
+    int first;
+    int second;
+/*
+        parsing and input errors must be considered
+*/
+    first = ft_atoi(argv[1]);
+    second = ft_atoi(argv[3]);
+    return (!(first < second));
+}
+
+int     test_int_le(char **argv)
+{
+    int first;
+    int second;
+/*
+        parsing and input errors must be considered
+*/
+    first = ft_atoi(argv[1]);
+    second = ft_atoi(argv[3]);
+    return (!(first <= second));
+}
 
 int     test_cmp(char **argv)
 {
     int i;
-    
+
     t_cmp operator[] = {
         {"=",&test_string_eq},
         {"!=",&test_string_neq},
-        {"-eq",&test_int_eq}
+        {"-eq",&test_int_eq},
+        {"-ne",&test_int_ne},
+        {"-ge",&test_int_ge},
+        {"-lt",&test_int_lt},
+        {"-le",&test_int_le}
     };
     i = 0;
     while(i < sizeof(operator)/sizeof(*operator))
