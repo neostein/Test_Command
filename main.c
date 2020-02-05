@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 23:04:38 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 01:58:32 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 05:09:37 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int builtin_test_2(char **argv)
     return(test_options(argv));
 }
 
-int builtin_test_3(char **chargv)
+int builtin_test_3(char **argv)
 {
-    return(0);
+    printf("comparaison between strings\n");
+    return(test_cmp(argv));
 }
 
-int builtin_test_4(char **chargv)
+int builtin_test_4(char **argv)
 {
     printf("why it reach 4 args ?\n");
     exit(1);

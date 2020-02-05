@@ -1,5 +1,5 @@
 NAME = 42
-SRC  = main.c options.c tools.c
+SRC  = main.c options.c tools.c str_cmp.c
 C       = gcc
 CFLAGS = 
 OBJ = $(SRC:.c=.o)
