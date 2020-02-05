@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 04:32:39 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/05 04:40:49 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,14 @@ int    test_options_x(char **argv)
     return(0);
 }
 
+int    test_options_z(char **argv)
+{
+    int len;
+
+    len = ft_strlen(argv[2]);
+    return(len == 0 ? 0 : 1);
+}
+
 int test_options(char **argv)
 {
     int i;
@@ -151,7 +159,8 @@ int test_options(char **argv)
         {"-s",&test_options_s},
         {"-u",&test_options_u},
         {"-w",&test_options_w},
-        {"-x",&test_options_x}
+        {"-x",&test_options_x},
+        {"-z",&test_options_z}
         };
 
     i = 0;

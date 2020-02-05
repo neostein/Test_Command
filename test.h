@@ -14,5 +14,6 @@ typedef struct  s_option
 
 char	file_type(mode_t st_mode);
 int     test_options(char **argv);
+int     builtin_test_1(char *str, int len);
 
 #endif
