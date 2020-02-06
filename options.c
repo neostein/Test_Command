@@ -6,7 +6,7 @@
 /*   By: nsaber <nsaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:23:31 by nsaber            #+#    #+#             */
-/*   Updated: 2020/02/05 06:10:04 by nsaber           ###   ########.fr       */
+/*   Updated: 2020/02/06 01:07:26 by nsaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,8 @@ int test_options(char **argv)
             return(table[i].f(argv));
             i++;
     }
-    printf("%s unary option not found\n",argv[1]);
+    ft_putstr_fd(argv[1],2);
+    ft_putendl_fd(" unary option not found",2);
     return(2);
 }
 
